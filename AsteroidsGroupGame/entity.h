@@ -15,10 +15,11 @@ public:
 	sf::Vector2f m_entitySpeed;
 	float m_entityRotation;
 
+	//Get texture for entity
 	Entity(std::string textureImage) {
 		sf::Texture entityTexture;
 		if (!entityTexture.loadFromFile(textureImage)) {
-			//throw exception
+			
 		}
 		else {
 			m_entityTexture = entityTexture;
@@ -77,20 +78,24 @@ public:
 		m_entitySprite.setPosition(m_entityPosition);
 	}
 
+	//Speed of asteroid
 	sf::Vector2f getSpeed() {
 		return m_entitySpeed;
 	}
 
+	//Direction of asteroid
 	sf::Vector2f getDirection() {
 		float mag = sqrt(pow(sin(m_entityRotation * 0.0174533), 2) + pow(-cos(m_entityRotation * 0.0174533), 2));
 		return sf::Vector2f(sin(m_entityRotation * 0.0174533) / mag, -cos(m_entityRotation * 0.0174533) / mag);
 	}
 
+	//X and Y speed of asteroid
 	void setSpeed(float speedX, float speedY) {
 		m_entitySpeed.x = speedX;
 		m_entitySpeed.y = speedY;
 	}
 
+	//Ensuring proper position of entity
 	void move(float deltaTime) {
 		m_entityPosition.x += m_entitySpeed.x * deltaTime;
 		m_entityPosition.y += m_entitySpeed.y * deltaTime;

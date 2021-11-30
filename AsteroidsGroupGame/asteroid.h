@@ -9,29 +9,30 @@ public:
 	sf::Vector2f m_entityScale;
 	sf::Vector2f m_entitySpeed;
 	float m_entityRotation;
-	int m_sizeFactor; // 1 - biggest 2-smaller 3-smallest
+	int m_sizeFactor; 
 	float m_radius;
 
 
-
+	//ASTEROID SIZES
 	Asteroid(float sizeFactor, sf::Vector2f position, sf::Vector2f speed) {
 		m_sizeFactor = sizeFactor;
 
-		if (m_sizeFactor == 1) {
+		if (m_sizeFactor == 1) { //Biggest Size
 			m_radius = 38.0f;
 		}
-		else if (m_sizeFactor == 2) {
+		else if (m_sizeFactor == 2) { // Medium Size
 			m_radius = 27.5f;
 		}
-		else if (m_sizeFactor == 3) {
+		else if (m_sizeFactor == 3) { //Smallest size
 			m_radius = 25.25f;
 		}
 		else {
-			m_radius = 38.5f;
+			m_radius = 38.0f;
 		}
 
+		//ASTEROID TEXTURE
 		sf::Texture entityTexture;
-		if (!entityTexture.loadFromFile("Assets/AttackBird.png")) {
+		if (!entityTexture.loadFromFile("Assets/Bird 2.png")) {
 			std::cout << "Error loading asteroid texture" << std::endl;
 		}
 		else {
@@ -48,6 +49,7 @@ public:
 
 	}
 
+	//Positiong of "asteroid" entity
 	void move(float deltaTime) {
 		m_entityPosition.x += m_entitySpeed.x * deltaTime;
 		m_entityPosition.y += m_entitySpeed.y * deltaTime;

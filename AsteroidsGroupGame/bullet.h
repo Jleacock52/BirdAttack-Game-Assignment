@@ -8,6 +8,7 @@ public:
 	sf::Vector2f m_position;
 	sf::Vector2f m_speed;
 
+	//Bullet shape, colour and speed
 	Bullet(float positionX, float positionY, float directionX, float directionY) {
 		m_shape = sf::CircleShape(2.0f);
 		m_shape.setFillColor(sf::Color(255, 0, 0));
@@ -19,11 +20,12 @@ public:
 		m_speed.y = directionY * m_bulletSpeed;
 	}
 
-
+	//Update postion of bullet
 	void setPosition(sf::Vector2f newPosition) {
 		m_shape.setPosition(newPosition);
 	}
 
+	//Show bullet movement
 	void move(float deltaTime) {
 		m_position.x += m_speed.x * deltaTime;
 		m_position.y += m_speed.y * deltaTime;

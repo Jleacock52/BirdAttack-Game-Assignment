@@ -11,12 +11,15 @@ public:
 	float m_movementSpeed;
 	float m_rotationSpeed;
 
+	//Movement and Rotation speed of player
 	Player(std::string textureImage, float health, float movementSpeed, float rotationSpeed) : Entity(textureImage) {
 		m_health = health;
 		m_movementSpeed = movementSpeed;
 		m_rotationSpeed = rotationSpeed;
 	}
 
+
+	//Ensure proper positioning of player
 	void move(float deltaTime) {
 		m_entitySpeed.x = m_movementSpeed * sin(m_entityRotation * 0.0174533);
 		m_entitySpeed.y = m_movementSpeed * -cos(m_entityRotation * 0.0174533);

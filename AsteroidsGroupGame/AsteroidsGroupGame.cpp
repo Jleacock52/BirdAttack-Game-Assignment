@@ -19,14 +19,15 @@ float getDistance(sf::Vector2f entity1, sf::Vector2f entity2) {
 int main()
 {
 
-	int maxAsteroidCount = 12;
-	int score = 0;
-	bool isAlive = true;
+	int maxAsteroidCount = 35; //max asteroids on window 
+	int score = 0; //initial score
+	bool isAlive = true; //alive or dead at beginning of game
 
 
 	std::vector<Bullet> activeBullets;
 	std::vector<Asteroid*> activeAsteroids;
 
+	//Game Window
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Group Assignment");
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
@@ -34,13 +35,14 @@ int main()
 	double debounceTimer = 0.0f, lastClick = 0.0f, lastAsteroidSpawn = 0.0f;
 	sf::Time dt = dt.Zero;
 
-
+	//player texture, size, spawn position and initial speed
 	Player* player = new Player("Assets/player2.png", 100.0f, 100.0f, 360.0f);
 	player->setScale(1.12f, 1.12f);
 	player->setPosition(250, 250);
 	player->setSpeed(0, 0);
 
 
+	//Text Font
 	sf::Font font;
 	if (!font.loadFromFile("Assets/Gameboy.ttf"))
 	{
@@ -64,20 +66,23 @@ int main()
 	scoreText.setCharacterSize(12);
 	deathText.setCharacterSize(20);
 
+	//Set text colour
 	bannerText.setFillColor(sf::Color(255, 255, 255));
 	scoreText.setFillColor(sf::Color(255, 255, 255));
 	deathText.setFillColor(sf::Color(255, 255, 255));
 
-
+	//Set text origin
 	bannerText.setOrigin(bannerText.getGlobalBounds().width / 2, 0);
 	scoreText.setOrigin(scoreText.getGlobalBounds().width / 2, 0);
 	deathText.setOrigin(deathText.getGlobalBounds().width / 2, deathText.getGlobalBounds().height / 2);
 
-
+    //Set text position in window
 	bannerText.setPosition(250, 0);
 	scoreText.setPosition(250, bannerText.getGlobalBounds().height + 10);
 	deathText.setPosition(250, 250);
 
+
+	//Window open
 	while (window.isOpen())
 	{
 
@@ -93,7 +98,7 @@ int main()
 
 
 		if (isAlive) {
-
+			//MOVEMENT OF CHARACTER
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
 				if (debounceTimer - lastClick > 100) {
@@ -206,6 +211,7 @@ int main()
 			}
 		}
 
+		//Draw to window
 		window.draw(bannerText);
 
 		std::string scoreTextString = "Score : " + std::to_string(score);
